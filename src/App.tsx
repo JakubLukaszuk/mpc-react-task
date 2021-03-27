@@ -1,56 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './App.css';
+import { RootState, useAppDispatch } from './store';
+import {getTasks, addTask, deleteTask} from './slices/taskSlice';
 
 function App() {
+  const { tasks, isLoading } = useSelector((state: RootState) => state.task);
+  const dispatch = useAppDispatch();
+  const surenameName = "Jakub.Łukaszuk";
+
+  useEffect(() => {
+    dispatch(addTask({username: surenameName, task: "task test", isCompleted: 1}))
+    .then(resolved=> dispatch(getTasks(surenameName)))
+      .then(getTasksResponse=> {
+        if(typeof getTasksResponse.payload === 'string' || getTasksResponse.payload instanceof String || getTasksResponse.payload === undefined )
+        {
+          return
+        }
+        dispatch(deleteTask({id: getTasksResponse.payload[0].id, username: surenameName}))
+      })
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      {tasks.map((task, index)=>(
+        <p key={index}>{task.task}</p>
+      ))}
+      {isLoading? <p>loading...</p> : null}
     </div>
   );
 }
