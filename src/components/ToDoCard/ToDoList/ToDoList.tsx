@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
+import { consts } from '../../../constants';
 import { getTasks } from '../../../slices/taskSlice';
 import { RootState, useAppDispatch } from '../../../store';
 
@@ -8,10 +9,9 @@ import ToDoItem from './ToDoItem/ToDoItem';
 const ToDoList = () => {
     const { tasks, isLoading } = useSelector((state: RootState) => state.task);
     const dispatch = useAppDispatch();
-    const surenameName = "Jakub.Łukaszuk";
 
     useEffect(() => {
-        dispatch(getTasks(surenameName))
+        dispatch(getTasks(consts.USER_NAME))
     }, [])
 
     return (

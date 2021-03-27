@@ -1,11 +1,16 @@
-import React from 'react'
+import React from 'react';
+import './Backdrop.css';
 
-const BackDrop = () => {
+interface IBackdrop{
+    show: boolean,
+    clicked: (event:  React.MouseEvent<HTMLElement>) => void
+}
+
+const BackDrop : React.FC<IBackdrop> = (props) => {
+    const {show, clicked} = props;
     return (
-        <div>
-            
-        </div>
-    )
+        show ? <div className = "Backdrop" onClick={clicked}></div> : null
+        )
 }
 
 export default BackDrop

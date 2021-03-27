@@ -3,10 +3,11 @@ import React, { useState } from 'react'
 interface ITogleButton{
     click: (event:  React.MouseEvent<HTMLElement>) => void,
     initState?: boolean
+    rest?: React.ButtonHTMLAttributes<HTMLButtonElement>
 }
 
 const TogleButton : React.FC<ITogleButton> = (props) => {
-    const {click, initState = false} = props;
+    const {click, initState = false, rest} = props;
     const [isToggleOn, setTsToggleOn] = useState(initState);
 
     const handleClick = (event:  React.MouseEvent<HTMLElement>) => {
@@ -15,8 +16,8 @@ const TogleButton : React.FC<ITogleButton> = (props) => {
 	}
 
     return (
-        <button onClick={handleClick}>
-          {isToggleOn ? 'Done' : 'NotDone'}
+        <button {...rest} onClick={handleClick}>
+          {isToggleOn ? 'Yes' : 'No'}
         </button>
       );
 }

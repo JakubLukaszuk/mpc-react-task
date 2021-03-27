@@ -1,10 +1,16 @@
 import React from 'react'
-import IconButton from '../../UI/IconButton/IconButton'
+import { ToDoModalState } from '../../../pages/ToDoPage';
+import IconButton from '../../UI/IconButton/IconButton';
 
-const ToDoPanel = () => {
+interface ToDoPanel {
+    openModal: (modalType: ToDoModalState) => void
+}
+
+const ToDoPanel: React.FC<ToDoPanel> = (props) => {
+    const {openModal} = props;
     return (
         <header>
-           <IconButton click={()=>{}} icon="plus"/>
+           <IconButton click={()=>{openModal("add")}} icon="plus"/>
            <h1>To Do List</h1>
            <IconButton click={()=>{}} icon="gear"/>
         </header>

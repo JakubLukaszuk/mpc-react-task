@@ -1,4 +1,9 @@
+import { type } from "os";
 import React, { useState } from "react";
+import { consts } from "../../../../constants";
+import { addTask, updateTask } from "../../../../slices/taskSlice";
+import { useAppDispatch } from "../../../../store";
+import ThemedButton from "../../../UI/ThemedButton.tsx/ThemedButton";
 import TogleButton from "../../../UI/ToggleButton/TogleButton";
 
 interface IToDoAddForm {
@@ -11,6 +16,8 @@ const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
   const [task, setTask] = useState("");
   const [isTaskComplete, setIsTaskCompele] = useState(false);
 
+  const dispatch = useAppDispatch();
+
   const handleChangeTask = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const value = evt.target.value;
     setTask(value);
@@ -20,8 +27,13 @@ const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
     setIsTaskCompele(!isTaskComplete);
   };
 
+  const submit = (event: React.FormEvent<HTMLFormElement>) =>{
+    event.preventDefault();
+    dispatch(addTask({task: task, isCompleted: isTaskComplete ? 1: 0, username: consts.USER_NAME }))
+  }
+
   return (
-    <form>
+    <form onSubmit={submit}>
       <header>
         <h3>{userName}</h3>
       </header>
@@ -34,7 +46,13 @@ const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
           onChange={handleChangeTask}
         />
       </label>
-      <TogleButton click={toggleIsTaskComplete} />
+      <label>
+        IsDone:
+        <TogleButton click={toggleIsTaskComplete} />
+      </label>
+      <ThemedButton rest={{type: "submit"}}>
+        Submitt
+      </ThemedButton>
     </form>
   );
 };

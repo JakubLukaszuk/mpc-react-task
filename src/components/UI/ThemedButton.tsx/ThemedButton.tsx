@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 
 interface IThemedButton{
-    click: (event:  React.MouseEvent<HTMLElement>) => void,
+    rest?: React.ButtonHTMLAttributes<HTMLButtonElement>,
+    children: any
 }
 
 const ThemedButton: React.FC<IThemedButton> = (props) => {
-    const {click} = props;
+    const {rest, children} = props;
+
     return (
-        <button>
-            
+        <button {...rest}>
+            {children}
         </button>
     )
 }
