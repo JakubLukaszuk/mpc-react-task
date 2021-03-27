@@ -1,33 +1,11 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import './App.css';
-import { RootState, useAppDispatch } from './store';
-import {getTasks, addTask, deleteTask, updateTask} from './slices/taskSlice';
+import ToDoPage from './pages/ToDoPage';
 
 function App() {
-  const { tasks, isLoading } = useSelector((state: RootState) => state.task);
-  const dispatch = useAppDispatch();
-  const surenameName = "Jakub.Łukaszuk";
-
-  useEffect(() => {
-    dispatch(addTask({username: surenameName, task: "task test", isCompleted: 1}))
-    .then(resolved=> dispatch(getTasks(surenameName)))
-      .then(getTasksResponse=> {
-        if(typeof getTasksResponse.payload === 'string' || getTasksResponse.payload instanceof String || getTasksResponse.payload === undefined )
-        {
-          return
-        }
-        dispatch(updateTask({id: getTasksResponse.payload[0].id, username: surenameName, task: "task upadtated", isCompleted:1}))
-      })
-
-  }, [])
-
   return (
     <div className="App">
-      {tasks.map((task, index)=>(
-        <p key={index}>{task.task}</p>
-      ))}
-      {isLoading? <p>loading...</p> : null}
+      <ToDoPage/>
     </div>
   );
 }

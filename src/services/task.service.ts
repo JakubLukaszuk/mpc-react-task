@@ -4,7 +4,7 @@ import { AxiosRequestConfig, AxiosResponse } from 'axios';
 export interface Task {
     id: string,
     task: string,
-    is_completed: number,
+    is_completed: number | boolean,
     candidate: string
 }
 

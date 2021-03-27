@@ -3,6 +3,7 @@ import { taskService, Task, IAddTask, IDeleteTask, DeletedTask, IUpdateTask } fr
 
 interface EnchencedTask extends Task {
     error: string | undefined;
+    is_completed: boolean
     isLoading: boolean;
 }
 
@@ -17,6 +18,7 @@ const echnaceTasks = (tasks: Array<Task>) => {
         = tasks.map(task => {
             const enchancedTask: EnchencedTask = {
                 ...task,
+                is_completed: task.is_completed < 1 ? false : true,
                 isLoading: false,
                 error: undefined
             };
