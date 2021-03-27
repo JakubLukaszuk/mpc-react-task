@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './App.css';
 import { RootState, useAppDispatch } from './store';
-import {getTasks, addTask, deleteTask} from './slices/taskSlice';
+import {getTasks, addTask, deleteTask, updateTask} from './slices/taskSlice';
 
 function App() {
   const { tasks, isLoading } = useSelector((state: RootState) => state.task);
@@ -17,8 +17,9 @@ function App() {
         {
           return
         }
-        dispatch(deleteTask({id: getTasksResponse.payload[0].id, username: surenameName}))
+        dispatch(updateTask({id: getTasksResponse.payload[0].id, username: surenameName, task: "task upadtated", isCompleted:1}))
       })
+
   }, [])
 
   return (
