@@ -36,6 +36,19 @@ const handleTaskArrayResponse = (response: Task[] | undefined) =>{
     return echnacedTasks;
 }
 
+const isItemToUpdate = (id: string, index: number, items: Array<EnchencedTask>) =>
+{
+    if(items[index] === undefined)
+    {
+        return false
+    }
+    if(id == items[index].id)
+    {
+         return true
+    }
+    return false;
+}
+
 export const getTasks = createAsyncThunk<Array<EnchencedTask>, string, { rejectValue: string }>
     ('tasks/get', async (userName) => {
         try {
@@ -125,34 +138,61 @@ export const taskSlice = createSlice({
 
 
         builder.addCase(deleteTask.pending, (state, action) => {
-            state.isLoading = true;
-        });
-        builder.addCase(deleteTask.fulfilled, (state, { payload }) => {
-            state.isLoading = false;
-            state.tasks.filter( taskItem => taskItem.id !== payload.id);
-        });
-        builder.addCase(deleteTask.rejected, (state, { payload }) => {
-            state.isLoading = false;
-            state.error = payload;
-        });
-
-        builder.addCase(updateTask.pending, (state, action) => {
-            state.isLoading = true;
-        });
-        builder.addCase(updateTask.fulfilled, (state, { payload }) => {
-            state.isLoading = false;
-            state.tasks.map((taskItem, index) => {
-                if(payload[index] === undefined)
+            const id = action.meta.arg.id
+            state.tasks = state.tasks.map(taskItem => {
+                if(taskItem.id === id)
                 {
-                    return taskItem
+                    taskItem.isLoading = true;
                 }
-                taskItem = payload[index];
                 return taskItem;
             })
         });
-        builder.addCase(updateTask.rejected, (state, { payload }) => {
+        builder.addCase(deleteTask.fulfilled, (state, { payload }) => {
+            state.tasks = state.tasks.filter( taskItem => taskItem.id !== payload.id);
+        });
+        builder.addCase(deleteTask.rejected, (state, action) => {
+            const id = action.meta.arg.id
+            state.tasks = state.tasks.map(taskItem => {
+                if(taskItem.id === id)
+                {
+                    taskItem.isLoading = false;
+                    taskItem.error = action.payload;
+                }
+                return taskItem;
+            })
+        });
+
+
+        builder.addCase(updateTask.pending, (state, action) => {
+            const id = action.meta.arg.id
+            state.tasks = state.tasks.map(taskItem => {
+                if(taskItem.id === id)
+                {
+                    taskItem.isLoading = true;
+                }
+                return taskItem;
+            })
+        });
+        builder.addCase(updateTask.fulfilled, (state, { payload }) => {
             state.isLoading = false;
-            state.error = payload;
+            state.tasks = state.tasks.map((taskItem, index) => {
+                if(taskItem.id == payload[0].id)
+                {
+                    taskItem = payload[0];
+                }
+                return taskItem;
+            })
+        });
+        builder.addCase(updateTask.rejected, (state, action) => {
+            const id = action.meta.arg.id
+            state.tasks = state.tasks.map(taskItem => {
+                if(taskItem.id === id)
+                {
+                    taskItem.isLoading = false;
+                    taskItem.error = action.payload
+                }
+                return taskItem;
+            })
         });
 
     }

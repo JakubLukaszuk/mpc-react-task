@@ -21,8 +21,16 @@ const ToDoPage = () => {
     setModalState(null);
   };
   const openModal = (modalType: ToDoModalState) => {
-    setModalState(modalType);
+      if(!selectedTask && modalType=="modify")
+      {
+        return;
+      }
+      setModalState(modalType);
   };
+
+  const unselectTask = () =>{
+      setSelectedTask(null);
+  }
 
   return (
     <div>
@@ -34,7 +42,7 @@ const ToDoPage = () => {
         />
         <Modal
           closeModal={closeModal}
-          isVisible={modalState !== null ? true : false}
+          isVisible={modalState != null ? true : false}
         >
           {modalState === "add" ? (
             <React.Fragment>
@@ -48,7 +56,7 @@ const ToDoPage = () => {
               <header>
                 <h2>Modify or delete task</h2>
               </header>
-              <ToDoModifyForm close={closeModal} taskValue={selectedTask} />
+              <ToDoModifyForm close={closeModal} taskValue={selectedTask} unselectTask={unselectTask} />
             </React.Fragment>
           ) : null}
         </Modal>

@@ -8,7 +8,7 @@ import ToDoItem, { IToDoItem } from './ToDoItem/ToDoListItem';
 
 interface IToDoList {
     setActiveItem:  (item : SelectedTask| null) => void
-    selectedTaskId: string| null
+    selectedTaskId: string | null
 }
 
 const ToDoList : React.FC<IToDoList> = (props) => {

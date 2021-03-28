@@ -22,7 +22,7 @@ const ToDoItem:React.FC<IToDoItem> = (props) => {
     })
     return (
         <li className={classes} onClick={() => setSelected({task: children, isComplete: isComplete, author: author, id: id})}>
-            {children}
+            {isLoading? "Loading..." : children}
         </li>
     )
 }

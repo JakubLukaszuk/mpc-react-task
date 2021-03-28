@@ -9,12 +9,13 @@ import ThemedButton from "../../../UI/ThemedButton.tsx/ThemedButton";
 import TogleButton from "../../../UI/ToggleButton/TogleButton";
 
 interface IToDoAddForm {
-  taskValue: SelectedTask,
+  taskValue: SelectedTask
   close: (event?:  React.MouseEvent<HTMLElement>) => void
+  unselectTask: ()=> void
 }
 
 const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
-  const { taskValue, close } = props;
+  const { taskValue, close, unselectTask } = props;
 
   const [task, setTask] = useState(taskValue.task);
   const [isTaskComplete, setIsTaskCompele] = useState(taskValue.isComplete);
@@ -26,19 +27,24 @@ const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
     setTask(value);
   };
 
-  const toggleIsTaskComplete = () => {
+  const toggleIsTaskComplete = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
     setIsTaskCompele(!isTaskComplete);
   };
 
   const submit = (event: React.FormEvent<HTMLFormElement>) =>{
     event.preventDefault();
-    dispatch(updateTask({id:taskValue.id ,task: task, isCompleted: isTaskComplete ? 1: 0, username: taskValue.author}));
+    dispatch(updateTask({id:taskValue.id ,task: task, isCompleted: isTaskComplete ? 1: 0, username: taskValue.author})).then(()=>{
+        unselectTask();
+    })
     close();
   }
 
   const handleDelete = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
-    dispatch(deleteTask({id:taskValue.id , username: taskValue.author}));
+    dispatch(deleteTask({id:taskValue.id , username: taskValue.author})).then(()=>{
+        unselectTask();
+    })
     close();
   }
 

@@ -20,8 +20,9 @@ const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
 
   const dispatch = useAppDispatch();
 
-  const handleChangeTask = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    const value = evt.target.value;
+  const handleChangeTask = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    const value = event.target.value;
     setTask(value);
   };
 
