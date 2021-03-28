@@ -31,7 +31,7 @@ const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
 
   const submit = (event: React.FormEvent<HTMLFormElement>) =>{
     event.preventDefault();
-    dispatch(addTask({task: task, isCompleted: isTaskComplete ? 1: 0, username: consts.USER_NAME }))
+    dispatch(addTask({task: task, isCompleted: isTaskComplete ? 1: 0, username: userName }))
   }
 
   return (
@@ -54,7 +54,7 @@ const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
         <TogleButton click={toggleIsTaskComplete} />
       </label>
       <ThemedButton rest={{type: "submit"}}>
-        Submitt
+        Submit
       </ThemedButton>
     </form>
   );

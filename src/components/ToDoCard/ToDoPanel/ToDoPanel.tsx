@@ -12,7 +12,7 @@ const ToDoPanel: React.FC<ToDoPanel> = (props) => {
         <header>
            <IconButton click={()=>{openModal("add")}} icon="plus"/>
            <h1>To Do List</h1>
-           <IconButton click={()=>{}} icon="gear"/>
+           <IconButton click={()=>{openModal("modify")}} icon="gear"/>
         </header>
     )
 }
