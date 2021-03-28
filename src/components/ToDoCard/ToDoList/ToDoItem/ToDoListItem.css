@@ -1,0 +1,14 @@
+.ToDoListItem
+{
+
+}
+
+.ToDoListItem.ToDoListItem--selected
+{
+    border: 1px solid black;
+}
+
+.ToDoListItem.ToDoListItem--notSelected
+{
+    border: none;
+}

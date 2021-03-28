@@ -3,15 +3,17 @@ import React, { useState } from "react";
 import { consts } from "../../../../constants";
 import { addTask, updateTask } from "../../../../slices/taskSlice";
 import { useAppDispatch } from "../../../../store";
+import IconButton from "../../../UI/IconButton/IconButton";
 import ThemedButton from "../../../UI/ThemedButton.tsx/ThemedButton";
 import TogleButton from "../../../UI/ToggleButton/TogleButton";
 
 interface IToDoAddForm {
   userName: string;
+  close: (event:  React.MouseEvent<HTMLElement>) => void
 }
 
 const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
-  const { userName } = props;
+  const { userName, close } = props;
 
   const [task, setTask] = useState("");
   const [isTaskComplete, setIsTaskCompele] = useState(false);
@@ -37,6 +39,7 @@ const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
       <header>
         <h3>{userName}</h3>
       </header>
+      <IconButton icon="cross" click={close}/>
       <label>
         Task:
         <input
