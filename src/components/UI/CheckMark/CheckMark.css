@@ -1,0 +1,5 @@
+.Checkmark{
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--borderColor)
+}

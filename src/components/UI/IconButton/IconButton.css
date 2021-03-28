@@ -1,0 +1,8 @@
+.IconButton
+{
+    color: var(--secondFontColor);
+    background: transparent;
+    border: 1px solid var(--secondBorderColor);
+    padding: 3px 8px;
+    border-radius: 5px;
+}

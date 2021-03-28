@@ -1,14 +1,30 @@
 .ToDoListItem
 {
+    cursor: pointer;
+    font-weight: bold;
+    border-top: 1px solid var(--borderColor);
+    background-color: var(--backGroundColor);
+    padding: 5px 0 5px 20px;
+    filter: none;
+    display: flex;
+}
 
+.ToDoListItem .ToDoListItem__separator
+{
+    width: 4px;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+    margin: -5px 10px;
 }
 
 .ToDoListItem.ToDoListItem--selected
 {
-    border: 1px solid black;
+    filter: brightness(90%);
 }
 
-.ToDoListItem.ToDoListItem--notSelected
+.ToDoListItem.ToDoListItem--compelete
 {
-    border: none;
+    text-decoration: line-through;
 }
+
+

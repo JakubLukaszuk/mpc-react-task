@@ -1,0 +1,28 @@
+.ToDoForm{
+    background: var(--backGroundColor);
+    color: var(--fontColor);
+    border-radius: 5px;
+}
+
+.ToDoForm.ToDoForm__head{
+    display: flex;
+    padding: 3px 8px;
+    font-size: .9em;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--secondBackGroundColor);
+    background: var(--secondBackGroundColorGradient);
+    color: var( --secondFontColor);
+}
+
+.ToDoForm.ToDoForm__editables
+{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.ToDoForm.ToDoForm__buttons{
+    margin: 5px 0 5px 0;
+}
+

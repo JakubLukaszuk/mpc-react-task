@@ -2,14 +2,11 @@
     position: fixed;
     z-index: 3;
     background-color: white;
-    width: 70%;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px black;
-    padding: 16px;
-    left: 15%;
+    border: 1px solid var(--secondBorderColor);
     top: 30%;
     box-sizing: border-box;
     transition: all 0.3s ease-out;
+    border-radius: 5px;
 }
 
 .Modal.Modal--close{

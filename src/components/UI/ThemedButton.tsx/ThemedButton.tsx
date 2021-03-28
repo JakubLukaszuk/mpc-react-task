@@ -1,4 +1,5 @@
 import React, { ButtonHTMLAttributes } from 'react'
+import './ThemedButton.css'
 
 interface IThemedButton{
     rest?: React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -9,7 +10,7 @@ const ThemedButton: React.FC<IThemedButton> = (props) => {
     const {rest, children} = props;
 
     return (
-        <button {...rest}>
+        <button className="ThemedButton" {...rest}>
             {children}
         </button>
     )

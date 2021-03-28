@@ -1,6 +1,8 @@
 import classNames from 'classnames';
+import { error } from 'console';
 import React from 'react'
 import { SelectedTask } from '../../../../pages/ToDoPage';
+import CheckMark from '../../../UI/CheckMark/CheckMark';
 import './ToDoListItem.css'
 
 export interface IToDoItem{
@@ -11,18 +13,19 @@ export interface IToDoItem{
     author: string
     setSelected:  (item : SelectedTask| null) => void
     isSelected: boolean
+    error?: string
 }
 
 const ToDoItem:React.FC<IToDoItem> = (props) => {
-    const {children, isLoading, id, author, isComplete, setSelected, isSelected} = props;
+    const {children, isLoading, id, author, isComplete, setSelected, isSelected, error} = props;
     const classes = classNames({
         'ToDoListItem': true,
         'ToDoListItem--selected': isSelected,
-        'ToDoListItem--notSelected': !isSelected
+        'ToDoListItem--compelete': isComplete
     })
     return (
         <li className={classes} onClick={() => setSelected({task: children, isComplete: isComplete, author: author, id: id})}>
-            {isLoading? "Loading..." : children}
+           <CheckMark isChecked={isComplete}/> <div className="ToDoListItem__separator"/> {isLoading? "Loading..." : error? error: children}
         </li>
     )
 }

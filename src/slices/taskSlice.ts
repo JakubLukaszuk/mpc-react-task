@@ -36,19 +36,6 @@ const handleTaskArrayResponse = (response: Task[] | undefined) =>{
     return echnacedTasks;
 }
 
-const isItemToUpdate = (id: string, index: number, items: Array<EnchencedTask>) =>
-{
-    if(items[index] === undefined)
-    {
-        return false
-    }
-    if(id == items[index].id)
-    {
-         return true
-    }
-    return false;
-}
-
 export const getTasks = createAsyncThunk<Array<EnchencedTask>, string, { rejectValue: string }>
     ('tasks/get', async (userName) => {
         try {
@@ -111,29 +98,29 @@ export const taskSlice = createSlice({
 
     },
     extraReducers: (builder) => {
-        builder.addCase(getTasks.pending, (state, { payload }) => {
+        builder.addCase(getTasks.pending, (state) => {
             state.isLoading = true;
         });
         builder.addCase(getTasks.fulfilled, (state, { payload }) => {
             state.isLoading = false;
             state.tasks = payload;
         });
-        builder.addCase(getTasks.rejected, (state, { payload }) => {
+        builder.addCase(getTasks.rejected, (state, action) => {
             state.isLoading = false;
-            state.error = payload;
+            state.error = action.error.message;
         });
 
 
-        builder.addCase(addTask.pending, (state, { payload }) => {
+        builder.addCase(addTask.pending, (state) => {
             state.isLoading = true;
         });
         builder.addCase(addTask.fulfilled, (state, { payload }) => {
             state.isLoading = false;
             state.tasks.push(...payload);
         });
-        builder.addCase(addTask.rejected, (state, { payload }) => {
+        builder.addCase(addTask.rejected, (state, action) => {
             state.isLoading = false;
-            state.error = payload;
+            state.error = action.error.message;
         });
 
 
@@ -156,7 +143,7 @@ export const taskSlice = createSlice({
                 if(taskItem.id === id)
                 {
                     taskItem.isLoading = false;
-                    taskItem.error = action.payload;
+                    taskItem.error = action.error.message;
                 }
                 return taskItem;
             })
@@ -173,12 +160,11 @@ export const taskSlice = createSlice({
                 return taskItem;
             })
         });
-        builder.addCase(updateTask.fulfilled, (state, { payload }) => {
-            state.isLoading = false;
+        builder.addCase(updateTask.fulfilled, (state, action) => {
             state.tasks = state.tasks.map((taskItem, index) => {
-                if(taskItem.id == payload[0].id)
+                if(taskItem.id == action.payload[0].id)
                 {
-                    taskItem = payload[0];
+                    taskItem = action.payload[0];
                 }
                 return taskItem;
             })
@@ -189,7 +175,7 @@ export const taskSlice = createSlice({
                 if(taskItem.id === id)
                 {
                     taskItem.isLoading = false;
-                    taskItem.error = action.payload
+                    taskItem.error = action.error.message
                 }
                 return taskItem;
             })

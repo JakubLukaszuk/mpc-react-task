@@ -1,0 +1,9 @@
+.ThemedButton
+{
+    color: var(--fontColor);
+    background-color: var(--secondBackGroundColor);
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    border: 1px solid var(--secondBorderColor);
+}

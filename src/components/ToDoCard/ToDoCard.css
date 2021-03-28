@@ -1,0 +1,9 @@
+.ToDoCard{
+    width: 400px;
+    height: 500px;
+    border-radius: 5px;
+    border: 1px solid var(--borderColor);
+    background-color: var(--backGroundColor);
+    color: var(--fontColor);
+    overflow-y: auto;
+}

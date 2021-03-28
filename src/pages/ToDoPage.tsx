@@ -3,6 +3,7 @@ import ToDoCard from "../components/ToDoCard/ToDoCard";
 import ToDoAddForm from "../components/ToDoCard/ToDoForm/AddForm/AddForm";
 import ToDoModifyForm from "../components/ToDoCard/ToDoForm/ModifyForm/ModifyForm";
 import Modal from "../components/UI/Modal/Modal";
+import './ToDoPage.css'
 import { consts } from "../constants";
 
 export type ToDoModalState = "add" | "modify" | null;
@@ -33,8 +34,8 @@ const ToDoPage = () => {
   }
 
   return (
-    <div>
-      <section>
+    <div className="ToDoPage">
+      <section className="ToDoPage ToDoPage__todos">
         <ToDoCard
           openModal={openModal}
           setSelectedTask={setSelectedTask}
@@ -45,19 +46,9 @@ const ToDoPage = () => {
           isVisible={modalState != null ? true : false}
         >
           {modalState === "add" ? (
-            <React.Fragment>
-              <header>
-                <h2>Add new tak</h2>
-              </header>
               <ToDoAddForm close={closeModal} userName={consts.USER_NAME} />
-            </React.Fragment>
           ) : modalState === "modify" && selectedTask ? (
-            <React.Fragment>
-              <header>
-                <h2>Modify or delete task</h2>
-              </header>
               <ToDoModifyForm close={closeModal} taskValue={selectedTask} unselectTask={unselectTask} />
-            </React.Fragment>
           ) : null}
         </Modal>
       </section>

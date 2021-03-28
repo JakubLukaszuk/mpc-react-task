@@ -38,7 +38,7 @@ const getTasks = async (username: string) => {
         return response.data.data
     }
     catch (error) {
-        Promise.reject(error);
+        throw error;
     }
 };
 
@@ -55,7 +55,7 @@ const addTask = async (taskToAdd: IAddTask) => {
         return data.data
     }
     catch (error) {
-        Promise.reject(error);
+        throw error;
     }
 
 };
@@ -73,7 +73,7 @@ const updateTask = async (taskToUpdate: IUpdateTask) => {
         return data.data
     }
     catch (error) {
-        Promise.reject(error);
+       throw error;
     }
 }
 
@@ -84,7 +84,7 @@ const deleteTask = async (taskToDelete: IDeleteTask) => {
         return response.data.data
     }
     catch (error) {
-        Promise.reject(error);
+        throw error;
     }
 
 }

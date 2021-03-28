@@ -1,15 +1,14 @@
-import { type } from "os";
 import React, { useState } from "react";
-import { consts } from "../../../../constants";
-import { addTask, updateTask } from "../../../../slices/taskSlice";
+import { addTask } from "../../../../slices/taskSlice";
 import { useAppDispatch } from "../../../../store";
 import IconButton from "../../../UI/IconButton/IconButton";
 import ThemedButton from "../../../UI/ThemedButton.tsx/ThemedButton";
 import TogleButton from "../../../UI/ToggleButton/TogleButton";
+import "../ToDoForm.css";
 
 interface IToDoAddForm {
   userName: string;
-  close: (event:  React.MouseEvent<HTMLElement>) => void
+  close: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
@@ -30,33 +29,40 @@ const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
     setIsTaskCompele(!isTaskComplete);
   };
 
-  const submit = (event: React.FormEvent<HTMLFormElement>) =>{
+  const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(addTask({task: task, isCompleted: isTaskComplete ? 1: 0, username: userName }))
-  }
+    dispatch(
+      addTask({
+        task: task,
+        isCompleted: isTaskComplete ? 1 : 0,
+        username: userName,
+      })
+    );
+  };
 
   return (
-    <form onSubmit={submit}>
-      <header>
-        <h3>{userName}</h3>
+    <form className="ToDoForm" onSubmit={submit}>
+      <header className="ToDoForm ToDoForm__head">
+        <h2>Add new tak</h2>
+        <IconButton icon="cross" click={close} />
       </header>
-      <IconButton icon="cross" click={close}/>
-      <label>
-        Task:
-        <input
-          type="text"
-          name="task"
-          value={task}
-          onChange={handleChangeTask}
-        />
-      </label>
-      <label>
-        IsDone:
-        <TogleButton click={toggleIsTaskComplete} />
-      </label>
-      <ThemedButton rest={{type: "submit"}}>
-        Submit
-      </ThemedButton>
+      <h3>{userName}</h3>
+      <section className="ToDoForm ToDoForm__editables">
+        <label>
+          Task:
+          <input
+            type="text"
+            name="task"
+            value={task}
+            onChange={handleChangeTask}
+          />
+        </label>
+        <label>
+          IsDone:
+          <TogleButton click={toggleIsTaskComplete} />
+        </label>
+        <ThemedButton rest={{ type: "submit" }}>Submit</ThemedButton>
+      </section>
     </form>
   );
 };

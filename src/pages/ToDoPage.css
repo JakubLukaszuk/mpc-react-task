@@ -1,0 +1,10 @@
+.ToDoPage
+{
+    height: 100vh;
+}
+
+.ToDoPage.ToDoPage__todos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
