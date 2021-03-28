@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import React from "react";
 import './CheckMark.css'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'

@@ -25,6 +25,7 @@
 .ToDoListItem.ToDoListItem--compelete
 {
     text-decoration: line-through;
+    color: var(--inactiveFontColor);
 }
 
 

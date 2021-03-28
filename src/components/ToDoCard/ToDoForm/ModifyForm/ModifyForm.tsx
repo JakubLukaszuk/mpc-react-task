@@ -1,8 +1,6 @@
-import { type } from "os";
 import React, { useState } from "react";
-import { consts } from "../../../../constants";
 import { SelectedTask } from "../../../../pages/ToDoPage";
-import { addTask, deleteTask, updateTask } from "../../../../slices/taskSlice";
+import { deleteTask, updateTask } from "../../../../slices/taskSlice";
 import { useAppDispatch } from "../../../../store";
 import IconButton from "../../../UI/IconButton/IconButton";
 import ThemedButton from "../../../UI/ThemedButton.tsx/ThemedButton";
@@ -74,26 +72,22 @@ const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
       </header>
       <h3>{taskValue.author}</h3>
       <section className="ToDoForm ToDoForm__editables">
-        <label>
-          Task:
           <input
+            placeholder="Task"
             type="text"
             name="task"
             value={task}
             onChange={handleChangeTask}
           />
-        </label>
-        <label>
-          IsDone:
+          <span>IsDone:</span>
           <TogleButton
             initState={isTaskComplete}
             click={toggleIsTaskComplete}
           />
-        </label>
       </section>
       <section className="ToDoForm ToDoForm__buttons">
         <ThemedButton rest={{ type: "submit" }}>Submit</ThemedButton>
-        <ThemedButton rest={{ onClick: handleDelete }}>Delete</ThemedButton>
+        <ThemedButton isDanger={true} rest={{ onClick: handleDelete }}>Delete</ThemedButton>
       </section>
     </form>
   );

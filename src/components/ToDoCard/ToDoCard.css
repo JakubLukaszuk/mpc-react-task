@@ -1,9 +1,16 @@
 .ToDoCard{
-    width: 400px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
     border-radius: 5px;
     border: 1px solid var(--borderColor);
     background-color: var(--backGroundColor);
     color: var(--fontColor);
     overflow-y: auto;
 }
+
+@media (min-width: 992px) {
+    .ToDoCard{
+        width: 400px;
+        height: 500px;
+    }
+ }

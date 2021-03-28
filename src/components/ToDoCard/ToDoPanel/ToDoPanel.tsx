@@ -3,11 +3,11 @@ import { ToDoModalState } from '../../../pages/ToDoPage';
 import IconButton from '../../UI/IconButton/IconButton';
 import './ToDoPanel.css'
 
-interface ToDoPanel {
+interface IToDoPanel {
     openModal: (modalType: ToDoModalState) => void
 }
 
-const ToDoPanel: React.FC<ToDoPanel> = (props) => {
+const ToDoPanel: React.FC<IToDoPanel> = (props) => {
     const {openModal} = props;
     return (
         <header className="ToDoPanel">

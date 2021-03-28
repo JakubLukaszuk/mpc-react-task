@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { taskService, Task, IAddTask, IDeleteTask, DeletedTask, IUpdateTask } from '../services/task.service';
+import { getErrorMessage } from '../utils/error';
 
 interface EnchencedTask extends Task {
     error: string | undefined;
@@ -107,7 +108,7 @@ export const taskSlice = createSlice({
         });
         builder.addCase(getTasks.rejected, (state, action) => {
             state.isLoading = false;
-            state.error = action.error.message;
+            state.error = getErrorMessage(action.error);
         });
 
 
@@ -120,7 +121,7 @@ export const taskSlice = createSlice({
         });
         builder.addCase(addTask.rejected, (state, action) => {
             state.isLoading = false;
-            state.error = action.error.message;
+            state.error = getErrorMessage(action.error);
         });
 
 
@@ -143,7 +144,7 @@ export const taskSlice = createSlice({
                 if(taskItem.id === id)
                 {
                     taskItem.isLoading = false;
-                    taskItem.error = action.error.message;
+                    taskItem.error = getErrorMessage(action.error);
                 }
                 return taskItem;
             })
@@ -162,7 +163,7 @@ export const taskSlice = createSlice({
         });
         builder.addCase(updateTask.fulfilled, (state, action) => {
             state.tasks = state.tasks.map((taskItem, index) => {
-                if(taskItem.id == action.payload[0].id)
+                if(taskItem.id === action.payload[0].id)
                 {
                     taskItem = action.payload[0];
                 }
@@ -175,7 +176,7 @@ export const taskSlice = createSlice({
                 if(taskItem.id === id)
                 {
                     taskItem.isLoading = false;
-                    taskItem.error = action.error.message
+                    taskItem.error = getErrorMessage(action.error)
                 }
                 return taskItem;
             })

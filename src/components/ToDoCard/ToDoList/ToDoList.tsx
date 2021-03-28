@@ -4,7 +4,7 @@ import { consts } from '../../../constants';
 import { SelectedTask } from '../../../pages/ToDoPage';
 import { getTasks } from '../../../slices/taskSlice';
 import { RootState, useAppDispatch } from '../../../store';
-import ToDoItem, { IToDoItem } from './ToDoItem/ToDoListItem';
+import ToDoItem from './ToDoItem/ToDoListItem';
 
 interface IToDoList {
     setActiveItem:  (item : SelectedTask| null) => void
@@ -27,7 +27,7 @@ const ToDoList : React.FC<IToDoList> = (props) => {
             error?
                 error:
             tasks.length?
-                tasks.map(taskItem => <ToDoItem error = {taskItem.error} isSelected={taskItem.id == selectedTaskId ? true: false} author={taskItem.candidate} setSelected= {setActiveItem}  key={taskItem.id} id={taskItem.id} isComplete={taskItem.is_completed} isLoading = {taskItem.isLoading}>{taskItem.task}</ToDoItem>)
+                tasks.map(taskItem => <ToDoItem error = {taskItem.error} isSelected={taskItem.id === selectedTaskId ? true: false} author={taskItem.candidate} setSelected= {setActiveItem}  key={taskItem.id} id={taskItem.id} isComplete={taskItem.is_completed} isLoading = {taskItem.isLoading}>{taskItem.task}</ToDoItem>)
             : null}
         </ul>
     )

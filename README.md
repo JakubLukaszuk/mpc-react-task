@@ -4,6 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm instal`
+Intalls nessesery packages to run project.
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
@@ -42,3 +45,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+It took me approximately 12 to 14 hours to complete the task.
+I'm not sure because I had a lot of unexpected breaks.

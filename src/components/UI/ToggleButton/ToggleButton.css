@@ -1,0 +1,13 @@
+.ToggleButton
+{
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-weight: bold;
+    border: 1px solid var(--secondBorderColor);
+    background-color: #bf0a0a
+}
+
+.ToggleButton--on
+{
+    background-color: #37bf0a
+}

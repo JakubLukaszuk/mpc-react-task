@@ -48,21 +48,17 @@ const ToDoAddForm: React.FC<IToDoAddForm> = (props) => {
       </header>
       <h3>{userName}</h3>
       <section className="ToDoForm ToDoForm__editables">
-        <label>
-          Task:
           <input
             type="text"
             name="task"
+            placeholder="Task"
             value={task}
             onChange={handleChangeTask}
           />
-        </label>
-        <label>
-          IsDone:
+          <span>IsDone:</span>
           <TogleButton click={toggleIsTaskComplete} />
-        </label>
-        <ThemedButton rest={{ type: "submit" }}>Submit</ThemedButton>
       </section>
+      <ThemedButton rest={{ type: "submit" }}>Submit</ThemedButton>
     </form>
   );
 };

@@ -22,7 +22,7 @@ const ToDoPage = () => {
     setModalState(null);
   };
   const openModal = (modalType: ToDoModalState) => {
-      if(!selectedTask && modalType=="modify")
+      if(!selectedTask && modalType==="modify")
       {
         return;
       }

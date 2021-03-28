@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { error } from 'console';
 import React from 'react'
 import { SelectedTask } from '../../../../pages/ToDoPage';
 import CheckMark from '../../../UI/CheckMark/CheckMark';

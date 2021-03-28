@@ -14,9 +14,9 @@ const IconButton:React.FC<IIconButton> = (props) => {
 
     return (
         <button className="IconButton" {...rest} onClick={click}>
-            <FontAwesomeIcon size="1x" icon={icon == "gear"?
-             faCog : icon == "plus"?
-              faPlus : icon == "cross"? faTimes: faTimes} />
+            <FontAwesomeIcon size="1x" icon={icon === "gear"?
+             faCog : icon === "plus"?
+              faPlus : icon === "cross"? faTimes: faTimes} />
         </button>
     )
 }

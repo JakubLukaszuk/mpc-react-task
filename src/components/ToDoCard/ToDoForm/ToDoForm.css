@@ -2,6 +2,7 @@
     background: var(--backGroundColor);
     color: var(--fontColor);
     border-radius: 5px;
+    margin-bottom: 5px;
 }
 
 .ToDoForm.ToDoForm__head{
@@ -22,7 +23,16 @@
     padding: 10px;
 }
 
+.ToDoForm.ToDoForm__editables.ToDoForm__editables__input
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .ToDoForm.ToDoForm__buttons{
-    margin: 5px 0 5px 0;
+    margin: 5px 0 0 0;
+    display: flex;
+    justify-content: space-evenly;
 }
 

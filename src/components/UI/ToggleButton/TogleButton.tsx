@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import classNames from 'classnames';
+import React, { useState } from 'react';
+import './ToggleButton.css'
 
 interface ITogleButton{
     click: (event:  React.MouseEvent<HTMLElement>) => void,
@@ -15,8 +17,13 @@ const TogleButton : React.FC<ITogleButton> = (props) => {
         click(event);
 	}
 
+  const classes = classNames({
+    'ToggleButton': true,
+    'ToggleButton--on': isToggleOn,
+})
+
     return (
-        <button {...rest} onClick={handleClick}>
+        <button className={classes} {...rest} onClick={handleClick}>
           {isToggleOn ? 'Yes' : 'No'}
         </button>
       );
